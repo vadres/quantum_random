@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var bd = [];
+
+    const fn = () => {
+      const arr = [];
+      for (let i = 0; i < bd.length; i++){
+        for (let u = i + 1; u < bd.length; u++){
+          
+          let check;
+
+          for (let y = 0; y < 6; y++){
+            check = true;
+            for (let z = 0; z < 6; z++) {
+              if (bd[i][y] != bd[u][z]){
+                check = false;
+              }
+            }
+
+            if (check) {
+              arr.push(bd[i]);
+            }
+
+          }
+
+        }
+      }
+
+      console.log(arr);
+    }
+    
+    fn();
+   
+  </script>
+</body>
+</html>

@@ -1,19 +1,20 @@
-var qrand = require("qrand");
+import qrand from "qrand";
+import fn from "./fnData";
 
 const numberFromHex = (octets) => {
-  const oct = octets.map((val, i) => {
-    let real_val = parseInt(val, 16);
-    return (real_val % 60);
-  });  
-  const gamr = [ ...Array(60).keys() ].map(el => 0);
-  
-  for (let i = 0; i < oct.length; i++)
-    gamr[ oct[i] ]++
-     
+  const oct = octets.map((val, i) => (
+    (parseInt(val, 16) % 60) + 1
+  ));  
+  const gamr = []
+  for (let i = 0; gamr.length < 9 || i < 167; i++){
+    const game = oct.slice(i * 6, (i * 6) + 6);
+    if (fn.searchCount(game) && !fn.searchGame(game))
+      gamr.push( game );
+  }
   return gamr
 }
 
-qrand.getRandomHexOctets(10000, (err, octets) => {
+qrand.getRandomHexOctets(1000, (err, octets) => {
   console.log(octets);
   console.log(numberFromHex(octets));
 })

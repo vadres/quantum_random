@@ -1,4 +1,5 @@
 var qrand = require("qrand");
+import fn from "./fnData";
 
 const numberFromHex = (octets) => {
   const oct = octets.map((val, i) => (
@@ -6,7 +7,14 @@ const numberFromHex = (octets) => {
   ));  
   const gamr = []
   for (let i = 0; i < 9; i++){
-    gamr.push( oct.slice(i * 6, (i * 6) + 6) );
+    let game = oct.slice(i * 6, (i * 6) + 6);
+    if (fn.searchGame(game)){
+      const a1 = oct.slice(i*6, (i * 6) + 16).sort(function() {
+        return .5 - Math.random();
+      }); 
+      game = a1.slice(0, 6);
+    }
+    gamr.push( game );
   }
   return gamr
 }

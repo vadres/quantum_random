@@ -1,29 +1,22 @@
 const fn = (() => {
   const searchGame = (game, data) => {
-    if (game.length < 6 || game.length > 6) 
-      throw new Error("Invalid game");
-
     game.sort((a,b) => a - b);
-    let bool;
     for(let g of data){
       g.sort((a,b) => a - b);
-      bool = 0;
-      for (let i = 0; i < 6; i++){
-        if (g[i] == game[i]) bool++;
-      }
-      if (bool == 6) return true;
+      if (g.join("") == game.join("")) 
+        return true;
     }
     return false;
-  }
+  };
 
   const searchCount = (game, data) => {
     const sum = game.reduce((prev, curr) => prev + curr, 0);
-    let bool = false;
-    for(let s of data){
-      if (s == sum) bool = true;
-    }
-    return bool;
-  }
+    return data.indexOf(sum) > -1;
+  };
+  
+  const sizeCount = (game) => {
+    return [ ...new Set(game) ].length == 6;
+  };
 
   const json = { data: [
   [ 5,  18,  30,  35,  39,  60 ],
@@ -2683,10 +2676,12 @@ const fn = (() => {
     267, 281, 106, 271 
   ]
 };
-  
+
   return {
-    searchGame: (game) => searchGame(game, json.data),
-    searchCount: (game) => searchCount(game, json.sums)
+    checkGame: (game) => {
+      return sizeCount(game) && searchCount(game, json.sums) && !searchGame(game, json.data);  
+    },
+    searchGame: (game) => searchGame(game, json.data)
   };
 })();
 

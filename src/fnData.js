@@ -19,6 +19,18 @@ const fn = (() => {
   };
 
   const json = { data: [
+   [ 3,19,34,44,56,58],
+    [5,37,43,49,54,56],
+    [16,17,25,47,48,58],
+    [8,18,20,24,36,45],
+    [11,16,22,30,34,42],
+    [8,9,10,24,42,44],
+    [1,19,46,47,49,53],
+    [14,26,35,38,45,53],
+    [9,27,35,45,46,59],
+    [31,33,34,35,39,48],
+    [1,6,23,26,39,49],
+    [2,6,27,37,44,47],
   [ 5,  18,  30,  35,  39,  60 ],
   [ 2,  3,  6,  18,  20,  28 ],
   [ 13,  16,  36,  53,  54,  55 ],
@@ -2681,7 +2693,7 @@ const fn = (() => {
     checkGame: (game) => {
       return sizeCount(game) && searchCount(game, json.sums) && !searchGame(game, json.data);  
     },
-    searchGame: (game) => searchGame(game, json.data)
+    searchGame: (game) => sizeCount(game) && !searchGame(game, json.data)
   };
 })();
 

@@ -5,7 +5,13 @@ var count = 0
 var games = [[]];
 var index = 0;
 const timer = () => {
-  console.log(`--- Iteration - ${count + 1} ---`);
+  if (count % 2 === 0) {
+    console.log('..');
+    console.log(`Iteration ${count}`);
+  } else  {
+    console.log('...');
+    console.log(`Iteration ${count}`);
+  }  
  
   qrand.getRandomHexOctets(5, (err, octets) => {
     const oct = octets.map((val, i) => (
@@ -17,18 +23,26 @@ const timer = () => {
     if (games[index].length >= 6) {
       if (!fn.searchGame(games[index])) {
         games[index] = []; 
+      } else { 
+        index++;
       }
-      index++;
       games[index] = []; 
     }
 
     games[index].push(val);
 
-    if (count < 1199){
+    if (count < 10){
       count++;
       setTimeout(timer, 10);
+      console.clear();
     } else {
-      console.log(games);
+      var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(games));
+      var content = document.getElementById('content');
+      var node = document.createElement('a');//'<a href="data:' + data + '" download="data.json">download JSON</a>');
+      node.href = `data:${data}`;
+      node.setAttribute('download', 'data.json');
+      node.innerHTML = "Donwload JSON";
+      content.appendChild(node);
     }
   });
 }

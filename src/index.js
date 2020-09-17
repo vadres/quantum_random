@@ -20,7 +20,7 @@ const timer = () => {
       
     var val = (oct % 60) + 1;
         
-    if (games[index].length >= 6) {
+    if (games[index].length >= 9) {
       if (!fn.searchGame(games[index])) {
         games[index] = []; 
       } else { 

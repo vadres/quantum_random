@@ -9,10 +9,11 @@ export class GenerateGameRandom implements GenerateGame {
 
   async exec(): Promise<Game> {
     const game: Game = new Game([]);
-
+    const value = await this.nextInt.exec();
+  
     for (let i = 0; i < 6; i++){
       const item: Item = {
-        value: await this.nextInt.exec(),
+        value,
         category: Category.cold
       };
 

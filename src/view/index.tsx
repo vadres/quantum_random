@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from '@/view/react';
+import ReactDOM from '@/view/react-dom';
 
 import App from './pages/home';
 

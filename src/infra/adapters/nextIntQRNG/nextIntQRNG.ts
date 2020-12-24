@@ -5,11 +5,11 @@ export class NextIntQRNGAdapter implements NextInt {
   uri: string;
 
   constructor(){
-    this.uri = `http://qrng.anu.edu.au/API/jsonI.php?type=hex16&length=1&size=3`;
+    this.uri = `http://qrng.anu.edu.au/API/jsonI.php?type=hex16&length=10&size=3`;
     
   }
 
-  async exec(): Promise<number> {
+  async exec(): Promise<number[]> {
     try 
     {
       
@@ -18,11 +18,13 @@ export class NextIntQRNGAdapter implements NextInt {
       });
        
       const json = await res.json();
-      const hexNum = json.data
+      const arrHexNum = json.data
       
-      const decNum = parseInt(hexNum, 16);
+      const arrDecNum = arrHexNum.map((hexNum: string) => {
+        return (parseInt(hexNum, 16)  % 60) + 1;
+      });
 
-      return (decNum % 60) + 1
+      return arrDecNum
 
     } catch (e) 
     {

@@ -1,3 +1,3 @@
 export interface NextInt {
-  exec: () => Promise<number>
+  exec: () => Promise<number[]>
 }

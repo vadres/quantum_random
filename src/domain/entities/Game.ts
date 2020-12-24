@@ -10,6 +10,15 @@ export class Game {
   items(): Item[] {
     return this._items
   }
+
+  checkHasValue(value: number): boolean {
+    for (let item of this._items){
+      if (item.value === value) {
+        return true;
+      }
+    }
+    return false;
+  }
 };
 
 export enum Category {

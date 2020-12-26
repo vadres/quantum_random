@@ -1,24 +1,25 @@
 import { Categorizer } from "@/domain/usecases/categorizer"
-import { Category } from "@/domain/entities/Game"
+import { Category, GameItem } from "@/domain/entities/Game"
 import { CategorizerJson } from "./categorizerJson"
 import * as json from '@/infra/db/games.json'
 
-const isCategory = (c: number): boolean => {
-  return c === Category.none ||
-         c === Category.cold ||
-         c === Category.halfCold ||
-         c === Category.halfHot ||
-         c === Category.hot
+const hasClass0 = (items: GameItem[]): boolean => {
+  for (let item of items) {
+    if (item.category === Category.class0)
+      return true;
+  }
+  return false;
 }
 
 describe('Categorize values', () => {
-  test('the return is a enum category instance', () => {
+  test('the return has 60 items', () => {
     const categorizer: Categorizer = new CategorizerJson([]);
-    expect(isCategory(categorizer.exec(5))).toBeTruthy();
+    expect(categorizer.exec().length).toBe(60);
   })
 
-  test('the return not is a "none" category', () => {
+  test('the return hasn\'t class0 items', () => {
     const categorizer: Categorizer = new CategorizerJson(json['data']);
-    expect(categorizer.exec(5) !== Category.none).toBeTruthy();
+    const items = categorizer.exec();
+    expect(hasClass0(items)).toBeFalsy();
   })
 })

@@ -1,13 +1,13 @@
 export class Game {
   constructor(
-    private readonly _items: Item[]
+    private readonly _items: GameItem[]
   ){}
 
   size(): number {
     return this.items.length;
   }
 
-  items(): Item[] {
+  items(): GameItem[] {
     return this._items
   }
 
@@ -22,14 +22,25 @@ export class Game {
 };
 
 export enum Category {
-  none,
-  cold,
-  halfCold,
-  halfHot,
-  hot
+  class0,
+  class1,
+  class2,
+  class3,
+  class4,
+  class5,
+  class6,
+  class7,
+  class8,
+  class9,
+  class10,
+  class11,
+  class12,
+  class13,
+  class14,
+  class15,
 };
 
-export type Item = {
+export type GameItem = {
   category: Category
   value: number
 };

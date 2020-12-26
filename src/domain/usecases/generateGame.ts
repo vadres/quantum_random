@@ -1,5 +1,9 @@
-import { Game } from "@/domain/entities/Game";
+import { Game, GameItem } from "@/domain/entities/Game";
 
-export interface GenerateGame {
-  exec: () => Promise<Game> 
+export abstract class GenerateGame {
+  constructor(
+    protected readonly allGameItems: GameItem[]
+  ) {}
+
+  abstract exec(): Promise<Game> 
 }

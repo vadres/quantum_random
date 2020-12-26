@@ -1,42 +1,40 @@
 import { Categorizer } from "@/domain/usecases/categorizer";
-import { Category } from "@/domain/entities/Game";
+import { Category, GameItem } from "@/domain/entities/Game";
 
 export class CategorizerJson implements Categorizer {
   constructor(
     private readonly data: number[][]
   ){}
 
-  exec(value: number): Category {
-    const temp = new Array(60).fill(0);
+  exec(): GameItem[] {
+    let temp = new Array(60).fill(0);
+    const items: GameItem[] = []
 
     for (let game of this.data) {
       for (let num of game) {
-        temp[num]++
+        temp[num - 1]++
       }
     }
-    
     for (const [v, sum] of Object.entries(temp)) {
-      if (value == parseInt(v)) {
-        return this.getCategory(sum)    
-      }
+      items.push({
+        value: parseInt(v) + 1,
+        category: this.getCategory(sum)    
+      })
     }
 
-    return Category.none
+    return items;
   }
 
   private getCategory(value: number): Category {
-    const howToDecrease = Math.trunc(this.data.length / 4); 
-
-    if (value > this.data.length - (howToDecrease)) {
-      return Category.hot
-    } else if (value > this.data.length - (howToDecrease * 2)) {
-      return Category.halfHot
-    } else if (value > this.data.length - (howToDecrease * 3)) {
-      return Category.halfCold
-    } else if (value > this.data.length - (howToDecrease * 4)) {
-      return Category.cold
-    } else {
-      return Category.none
+    const normSize = this.data.length / 6;
+    const howToDecrease = Math.trunc(normSize / 15); 
+    
+    for (let c = 1; c <= 15; c++) {
+      if (value > (normSize - (howToDecrease * c))) {
+        return Category[`class${c}`]
+      }
     }
+    
+    return Category.class0
   }
 }

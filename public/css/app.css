@@ -4,3 +4,51 @@
     box-sizing: border-box;
     font-family: 'Noto Sans JP', sans-serif;
 }
+.bg-class-0 {
+    background-color: #222;
+}
+.bg-class-15 {
+    background-color: #9198F2;
+}
+.bg-class-14 {
+    background-color: #9879F2;
+}
+.bg-class-13 {
+    background-color: #85B0F2;
+}
+.bg-class-12 {
+    background-color: #79D1F2;
+}
+.bg-class-11 {
+    background-color: #72ECF2;
+}
+.bg-class-10 {
+    background-color: #6FF2B8;
+}
+.bg-class-9 {
+    background-color: #6FF27A;
+}
+.bg-class-8 {
+    background-color: #ACF26D;
+}
+.bg-class-7 {
+    background-color: #DAF268;
+}
+.bg-class-6 {
+    background-color: #F2E966;
+}
+.bg-class-5 {
+    background-color: #F2D55E;
+}
+.bg-class-4 {
+    background-color: #F2C055;
+}
+.bg-class-3 {
+    background-color: #F2AE52;
+}
+.bg-class-2 {
+    background-color: #F27E41;
+}
+.bg-class-1 {
+    background-color: #F25027;
+}

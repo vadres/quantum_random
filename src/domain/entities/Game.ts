@@ -22,6 +22,7 @@ export class Game {
 };
 
 export enum Category {
+  none,
   cold,
   halfCold,
   halfHot,

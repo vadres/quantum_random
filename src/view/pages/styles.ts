@@ -21,6 +21,10 @@ export const Title = styled.div`
   color: #444;
 `
 
+export const GamesDiv = styled.div`
+  height: 300px;
+`
+
 
 
 

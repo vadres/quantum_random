@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { 
   Main, 
   Section,
-  Title
+  Title,
+  GamesDiv
 } from '@/view/pages/styles';
 
 import Game from '@/view/components/game/Game';
@@ -45,12 +46,14 @@ const Home: React.FC<AppProps> = ({
     <Main>
       <Section>
         <Title>Jogos Aleatórios</Title>
-        <Game game={rgame} />
-        <Game game={rgame2} />
-        <Game game={rgame3} />
-        <Game game={rgame4} />
-        <Game game={rgame5} />
-      </Section>
+        <GamesDiv>
+          <Game game={rgame} />
+          <Game game={rgame2} />
+          <Game game={rgame3} />
+          <Game game={rgame4} />
+          <Game game={rgame5} />
+        </GamesDiv>
+        </Section>
     </Main>
   );
 }

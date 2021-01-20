@@ -17,14 +17,31 @@ const mockGameItems = () => {
   return items;
 }
 
-const isAllDistinct = (arr: GameItem[]) => {
-  const arrprimitive = arr.map(item => item.value);
-  return (new Set(arrprimitive)).size === arr.length
+const isAllSize6 = (arr: Game[]) => {
+  for (let game of arr) {
+    if (game.items().length !== 6) {
+      return false
+    }
+  }
+
+  return true;
 }
+
+const isAllDistinct = (arr: Game[]) => {
+  for (let game of arr) {
+    const arrprimitive = game.items().map(item => item.value);
+    if ((new Set(arrprimitive)).size !== game.items().length) {
+      return false
+    }
+  }
+
+  return true;
+}
+
 declare global {
   namespace NodeJS {
     interface Global {
-       items: GameItem[]
+       games: Game[]
     } 
   }
 }
@@ -32,17 +49,21 @@ declare global {
 beforeAll(async () => {
   const categorizer: Categorizer = new CategorizerJson([]);
   const generateGame: GenerateGame = new GenerateGameRandom(mockGameItems(), new NextIntQRNGAdapter()); 
-  const game: Game = await generateGame.exec();
-  global.items = game.items();
+  const games: Game[] = await generateGame.exec();
+  global.games = games;
 })
 
 describe('generate random game', () => {
-  test('size of the game should be 6', async () =>{
-    expect((global.items).length).toBe(6);
+  test('size of the games should be 5', async () =>{
+    expect((global.games).length).toBe(5);
+  });
+
+  test('size of the each game should be 6', async () =>{
+    expect(isAllSize6(global.games)).toBeTruthy();
   });
 
   test('numbers should be distincts', async () => {
-    expect(isAllDistinct(global.items)).toBeTruthy();
+    expect(isAllDistinct(global.games)).toBeTruthy();
   });
 
 })

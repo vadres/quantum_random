@@ -1,19 +1,20 @@
 import React from 'react';
 
-import { GameModel } from '@/view/viewModels/GameModel';
+import { Game as GameEntity, GameItem as GameItemEntity } from '@/domain/entities/Game';
 import GameItem from './GameItem';
+import { GameSC } from './styles';
 
 export interface GameProps {
-  game: GameModel
+  game?: GameEntity
 }
  
 const Game: React.FC<GameProps> = ({ game }) => {
   return (
-    <div>
-      {game.items.map(el => (
+    <GameSC>
+      {game?.items().map((el: GameItemEntity) => (
         <GameItem item={el} />
       ))}
-    </div>
+    </GameSC>
   );
 }
  

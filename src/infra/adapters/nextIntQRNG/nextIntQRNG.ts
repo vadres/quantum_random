@@ -1,11 +1,13 @@
 import fetch from 'node-fetch';
 import { NextInt } from "@/app/contracts/nextInt"
 
+const length = 1000
+
 export class NextIntQRNGAdapter implements NextInt {
   uri: string;
 
   constructor(){
-    this.uri = `http://qrng.anu.edu.au/API/jsonI.php?type=hex16&length=10&size=3`;
+    this.uri = `http://qrng.anu.edu.au/API/jsonI.php?type=hex16&length=${length}&size=3`;
     
   }
 

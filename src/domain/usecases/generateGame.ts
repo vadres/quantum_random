@@ -5,5 +5,5 @@ export abstract class GenerateGame {
     protected readonly allGameItems: GameItem[]
   ) {}
 
-  abstract exec(): Promise<Game> 
+  abstract exec(): Promise<Game[]> 
 }

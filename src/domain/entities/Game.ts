@@ -22,22 +22,12 @@ export class Game {
 };
 
 export enum Category {
-  class0,
-  class1,
-  class2,
-  class3,
-  class4,
-  class5,
-  class6,
-  class7,
-  class8,
-  class9,
-  class10,
-  class11,
-  class12,
-  class13,
-  class14,
-  class15,
+  class0 = "class-0",
+  class1 = "class-1",
+  class2 = "class-2",
+  class3 = "class-3",
+  class4 = "class-4",
+  class5 = "class-5",
 };
 
 export type GameItem = {

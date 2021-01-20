@@ -10,25 +10,33 @@ export class GenerateGameRandom extends GenerateGame {
     super(allGameItems)
   }
 
-  async exec(): Promise<Game> {
-    const game: Game = new Game([]);
+  async exec(): Promise<Game[]> {
+    const games: Game[] = [];
   
-    for (let i = 0; i < 6; i++){
-      let item: GameItem = this.getItem(0)
+    const valueArr: number[] = await this.nextInt.exec()
+    
+    for (let u = 0; u < 5; u++) {
+      const game = new Game([]);
 
-      const valueArr: number[] = await this.nextInt.exec()
+      for (let i = 0; i < 6; i++){
+        let item: GameItem = this.getItem(0)
 
-      for(let value of valueArr) {
-        if (!game.checkHasValue(value)) {
-          item = this.getItem(value)
-          break;
+        while (valueArr.length) {
+          let value: number = valueArr.pop() || 0;
+          
+          if (!game.checkHasValue(value | 1)) {
+            item = this.getItem(value)
+            break;
+          }
         }
+        
+        game.items().push(item)
       }
-      
-      game.items().push(item)
+
+      games.push(game);
     }
 
-    return game;
+    return games;
   }
 
   private getItem(value: number): GameItem {

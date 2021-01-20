@@ -27,9 +27,9 @@ export class CategorizerJson implements Categorizer {
 
   private getCategory(value: number): Category {
     const normSize = this.data.length / 6;
-    const howToDecrease = Math.trunc(normSize / 15); 
+    const howToDecrease = Math.trunc(normSize / 5); 
     
-    for (let c = 1; c <= 15; c++) {
+    for (let c = 1; c <= 5; c++) {
       if (value > (normSize - (howToDecrease * c))) {
         return Category[`class${c}`]
       }

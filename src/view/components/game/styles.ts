@@ -4,12 +4,7 @@ const flop = keyframes`
   0%{
     transform: scale(0)
   }
-  70%{
-    transform: scale(1.2)
-  }
-  85%{
-    transform: scale(0.6)
-  }
+  
   100%{
     transform: scale(1)
   }
@@ -18,11 +13,12 @@ const flop = keyframes`
 export const GameSC = styled.div`
   display: flex;
   flex-direction: row;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  width: 360px;
 `
 
 export const GameItemContainer = styled.div`
-  margin-right: 5px;
+  margin-right: 10px;
   width: 50px;
   height: 50px;
 `
@@ -31,10 +27,12 @@ export const GameItemSC = styled.div`
   width: 50px;
   height: 50px;
   display: block;
-  border-radius: 40px;
+  border-radius: 50%;
   text-align: center;
   line-height: 50px;
-  animation: ${flop} 0.5s ease-out 1;
+  animation: ${flop} 0.3s ease-out 1;
+  animation-fill-mode: forwards;
+  font-size: 17px;
 `
 
 

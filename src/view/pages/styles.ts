@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Main = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -13,18 +13,11 @@ export const Section = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 10px;
+  margin: 20px;
 `
 export const Title = styled.div`
   font-weight: 700;
   font-size: 25px;
   color: #444;
+  margin-bottom: 10px;
 `
-
-export const GamesDiv = styled.div`
-  height: 300px;
-`
-
-
-
-

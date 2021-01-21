@@ -1,14 +1,15 @@
 import { GenerateGame } from "@/domain/usecases/generateGame"
-import { GenerateGameRandom } from '@/app/services/generateGameRandom/generateGameRandom'
+import { GenerateGameHot } from '@/app/services/generateGameHot/generateGameHot'
 import { Category, Game, GameItem } from "@/domain/entities/Game";
-import { NextIntQRNGAdapter } from "@/infra/adapters/nextIntQRNG/nextIntQRNG";
 
 const mockGameItems = () => {
+  const cat = [ Category.class1, Category.class2,Category.class3,Category.class4,Category.class5, ]
+  
   const items: GameItem[] = []
   for (let i =1; i < 61; i++){
     items.push({
       value: i,
-      category: Category.class0
+      category: cat[Math.trunc(Math.random() * 4)]
     })
   }
 
@@ -45,14 +46,14 @@ declare global {
 }
 
 beforeAll(async () => {
-  const generateGame: GenerateGame = new GenerateGameRandom(mockGameItems(), new NextIntQRNGAdapter()); 
+  const generateGame: GenerateGame = new GenerateGameHot(mockGameItems()); 
   const games: Game[] = await generateGame.exec();
   global.games = games;
 })
 
-describe('generate random game', () => {
-  test('size of the games should be 5', async () =>{
-    expect((global.games).length).toBe(5);
+describe('generate hot game', () => {
+  test('size of the games should be 1', async () =>{
+    expect((global.games).length).toBe(1);
   });
 
   test('size of the each game should be 6', async () =>{

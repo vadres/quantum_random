@@ -5,19 +5,22 @@ import { GenerateGameRandom } from '@/app/services/generateGameRandom/generateGa
 import { NextIntQRNGAdapter } from '@/infra/adapters/nextIntQRNG/nextIntQRNG';
 import { CategorizerJson } from '@/app/services/categorizerJson/categorizerJson';
 import * as json from '@/infra/db/games.json';
+import { GenerateGameHot } from '@/app/services/generateGameHot/generateGameHot';
+import { GenerateGameCold } from '@/app/services/generateGameCold/generateGameCold';
 
 export const MakeHome: React.FC = () => {
   const categorizer = new CategorizerJson(json.data);
-  const items = categorizer.exec();
 
   const nextInt = new NextIntQRNGAdapter();
-  const genGameRandom = new GenerateGameRandom(items, nextInt);
+  const genGameRandom = new GenerateGameRandom(categorizer.exec(), nextInt);
+  const genGameHot = new GenerateGameHot(categorizer.exec());
+  const genGameCold = new GenerateGameCold(categorizer.exec());
 
   return (
     <Home
       genGameRandom={genGameRandom}
-      genGameHot={genGameRandom}
-      genGameCold={genGameRandom}
+      genGameHot={genGameHot}
+      genGameCold={genGameCold}
     />
   ) 
    

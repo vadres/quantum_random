@@ -11,7 +11,7 @@ const GameItem: React.FC<GameProps> = ({ item }) => {
   const [ visible, setVisible ] = useState(false);
 
   useEffect(() => {
-    let timeout = setTimeout(() => setVisible(true), Math.random() * 300)
+    let timeout = setTimeout(() => setVisible(true), Math.random() * 500)
 
     return () => { clearTimeout(timeout) }
   }, []);

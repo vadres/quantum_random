@@ -24,7 +24,7 @@ export class GenerateGameRandom extends GenerateGame {
         while (valueArr.length) {
           let value: number = valueArr.pop() || 0;
           
-          if (!game.checkHasValue(value | 1)) {
+          if (!game.checkHasValue(value)) {
             item = this.getItem(value)
             break;
           }

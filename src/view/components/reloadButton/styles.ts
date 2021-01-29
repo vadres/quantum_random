@@ -15,6 +15,10 @@ export const ReloadContainer = styled.div`
   height: 70px;
   position: absolute;
   right: 40px;
+  @media (max-width: 1000px) {
+    right: calc(50% - 37px);
+    top: 0;
+  }
   cursor: pointer;
   svg {
     transition: all ease 0.4s;

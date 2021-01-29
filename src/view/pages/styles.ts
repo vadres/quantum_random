@@ -7,6 +7,11 @@ export const Main = styled.div`
   justify-content: center;
   width: 100%;
   height: 100vh;
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+    transform: scale(0.8);
+  }
 `
 export const Section = styled.section`
   display: flex;

@@ -9,6 +9,7 @@ import Game from '@/view/components/game/Game';
 import GameItem from '@/view/components/game/GameItem';
 import { GenerateGame } from '@/domain/usecases/generateGame';
 import { Game as GameEntity } from '@/domain/entities/Game';
+import ReloadButton from '../components/reloadButton/ReloadButton';
 
 export interface AppProps {
   genGameRandom: GenerateGame
@@ -21,18 +22,19 @@ const Home: React.FC<AppProps> = ({
   genGameCold,
   genGameHot,
 }) => {
-  const [ gameHot, setGameHot ] = useState<GameEntity>(new GameEntity([]));
-  const [ gameCold, setGameCold ] = useState<GameEntity>(new GameEntity([]));
-  const [ rgame, setRgame ] = useState<GameEntity>(new GameEntity([]));
-  const [ rgame2, setRgame2 ] = useState<GameEntity>(new GameEntity([]));
-  const [ rgame3, setRgame3 ] = useState<GameEntity>(new GameEntity([]));
-  const [ rgame4, setRgame4 ] = useState<GameEntity>(new GameEntity([]));
-  const [ rgame5, setRgame5 ] = useState<GameEntity>(new GameEntity([]));
+  const [ gameHot, setGameHot ] = useState(new GameEntity([]));
+  const [ gameCold, setGameCold ] = useState(new GameEntity([]));
+  const [ rgame, setRgame ] = useState(new GameEntity([]));
+  const [ rgame2, setRgame2 ] = useState(new GameEntity([]));
+  const [ rgame3, setRgame3 ] = useState(new GameEntity([]));
+  const [ rgame4, setRgame4 ] = useState(new GameEntity([]));
+  const [ rgame5, setRgame5 ] = useState(new GameEntity([]));
   
   const findRandom = async () => {
     const gamesHot: GameEntity[] = await genGameHot.exec()
     const gamesCold: GameEntity[] = await genGameCold.exec()
     const games: GameEntity[] = await genGameRandom.exec()
+
      
     setGameHot(gamesHot[0]);
     setGameCold(gamesCold[0]);
@@ -56,6 +58,20 @@ const Home: React.FC<AppProps> = ({
     }, 1600)
   }
 
+  const reset = () => {
+    setGameHot(new GameEntity([]));
+    setGameCold(new GameEntity([]));
+    setRgame(new GameEntity([]))
+    setRgame2(new GameEntity([]))
+    setRgame3(new GameEntity([]))
+    setRgame4(new GameEntity([]))
+    setRgame5(new GameEntity([]))
+
+    findRandom();
+  }
+
+  const [ reload, setReload ] = useState("")
+ 
   useEffect(() => {
     findRandom()
   }, [ genGameRandom ])
@@ -66,13 +82,13 @@ const Home: React.FC<AppProps> = ({
       <div>
         <Section>
           <Title>Jogo Quente</Title>
-          <div>
+          <div style={{ height: 50 }}>
             <Game game={gameHot} />
           </div>
         </Section>
         <Section>
           <Title>Jogo Frio</Title>
-          <div>
+          <div style={{ height: 50 }}>
             <Game game={gameCold} />
           </div>
         </Section>
@@ -87,7 +103,9 @@ const Home: React.FC<AppProps> = ({
           <Game game={rgame4} />
           <Game game={rgame5} />
         </div>
-        </Section>
+      </Section>
+      
+      <ReloadButton onClick={() => reset()} />
     </Main>
   );
 }

@@ -37,8 +37,6 @@ export class CategorizerJson implements Categorizer {
       })
     }
     
-    console.log("BIGGER " + this.bigger)
-    console.log("SMALLER " + this.smaller)
     return items;
   }
 

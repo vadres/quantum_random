@@ -22,7 +22,7 @@ export class GenerateGameCold extends GenerateGame {
     
     const game = new Game([])
 
-    const gamesshufle = this.allGameItems.slice(0, 30).sort(() => .5 - Math.random())   
+    const gamesshufle = this.allGameItems.slice(0, 20).sort(() => .5 - Math.random())   
 
     for (let i = 0; i < 6; i++) {
       game.items().push(gamesshufle[i])

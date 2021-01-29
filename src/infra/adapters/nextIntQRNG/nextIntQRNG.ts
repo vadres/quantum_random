@@ -7,7 +7,7 @@ export class NextIntQRNGAdapter implements NextInt {
   uri: string;
 
   constructor(){
-    this.uri = `http://qrng.anu.edu.au/API/jsonI.php?type=hex16&length=${length}&size=3`;
+    this.uri = `https://qrng.anu.edu.au/API/jsonI.php?type=hex16&length=${length}&size=3`;
     
   }
 

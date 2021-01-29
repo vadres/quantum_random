@@ -10,7 +10,7 @@ export const Main = styled.div`
 
   @media (max-width: 720px) {
     flex-direction: column;
-    transform: scale(0.8);
+    transform: scale(0.75);
   }
 `
 export const Section = styled.section`

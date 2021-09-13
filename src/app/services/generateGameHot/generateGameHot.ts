@@ -21,6 +21,9 @@ export class GenerateGameHot extends GenerateGame {
     const games: Game[] = [];
     
     const game = new Game([])
+    
+    console.log("hot numbers");
+    console.log(this.allGameItems.slice(0, 20).join(", "));
 
     const gamesshufle = this.allGameItems.slice(0, 20).sort(() => .5 - Math.random())   
 
